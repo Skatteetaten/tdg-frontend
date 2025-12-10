@@ -1,0 +1,27 @@
+.resultat-wrapper {
+  min-width: 100%;
+}
+
+.resultat-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-m);
+  min-width: 80%;
+  width: fit-content;
+}
+
+.resultat-tabell {
+  width: 100%;
+}
+
+.modal-wrapper {
+  min-width: 50% !important;
+}
+
+.xml-visning {
+  white-space: pre;
+  word-break: break-all;
+  line-height: var(--semantic-line-height-heading1);
+  background-color: var(--palette-ochre-10);
+  overflow: scroll;
+}

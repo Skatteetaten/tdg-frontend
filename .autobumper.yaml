@@ -1,0 +1,14 @@
+---
+autoBumpEnabled: true
+autoMergeEnable: false
+bumpParent: true
+jira:
+  enabled: false
+allowMajorUpgrades: true
+pullRequestType: "ONE_PR"
+ignoreList: [ ]
+node:
+  version: "20"
+  # you are responsible for your own commands
+  upgradeCommand: "npx npm-check-updates --target minor --upgrade"
+

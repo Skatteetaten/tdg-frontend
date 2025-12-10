@@ -1,0 +1,145 @@
+{
+  "name": "tdg-frontend",
+  "groupId": "no.skatteetaten.rst",
+  "version": "1.1.0",
+  "type": "module",
+  "private": false,
+  "author": {
+    "name": "Skatteetaten"
+  },
+  "files": [
+    "build",
+    "build-node/api",
+    "git-properties.json",
+    "metadata"
+  ],
+  "bundleDependencies": [
+    "express",
+    "winston",
+    "winston-daily-rotate-file"
+  ],
+  "dependencies": {
+    "@skatteetaten/ds-buttons": "2.2.2",
+    "@skatteetaten/ds-collections": "2.2.2",
+    "@skatteetaten/ds-content": "2.2.2",
+    "@skatteetaten/ds-core-designtokens": "2.2.2",
+    "@skatteetaten/ds-core-utils": "2.2.2",
+    "@skatteetaten/ds-forms": "2.2.2",
+    "@skatteetaten/ds-icons": "2.2.2",
+    "@skatteetaten/ds-layout": "2.2.2",
+    "@skatteetaten/ds-navigation": "2.2.2",
+    "@skatteetaten/ds-overlays": "2.2.2",
+    "@skatteetaten/ds-progress": "2.2.2",
+    "@skatteetaten/ds-status": "2.2.2",
+    "@skatteetaten/ds-table": "2.2.2",
+    "@skatteetaten/ds-typography": "2.2.2",
+    "@tanstack/react-query": "5.87.4",
+    "@testing-library/user-event": "14.6.1",
+    "axios": "1.12.2",
+    "express": "5.1.0",
+    "kotlin-playground": "1.30.0",
+    "node-cache": "5.1.2",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "react-error-boundary": "6.0.0",
+    "react-router-dom": "7.6.2",
+    "uuid": "11.1.0",
+    "winston": "3.17.0",
+    "winston-daily-rotate-file": "5.0.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "9.29.0",
+    "@testing-library/jest-dom": "6.6.3",
+    "@testing-library/react": "16.3.0",
+    "@types/express": "5.0.3",
+    "@types/node": "24.0.3",
+    "@types/react": "19.1.8",
+    "@types/react-dom": "19.1.6",
+    "@types/react-router-dom": "5.3.3",
+    "@types/uuid": "10.0.0",
+    "@typescript-eslint/parser": "8.34.1",
+    "@vitejs/plugin-react": "4.6.0",
+    "@vitest/coverage-v8": "3.2.4",
+    "@vitest/eslint-plugin": "1.2.7",
+    "cross-env": "7.0.3",
+    "dotenv": "16.5.0",
+    "eslint": "9.29.0",
+    "eslint-config-prettier": "10.1.5",
+    "eslint-import-resolver-typescript": "4.4.3",
+    "eslint-plugin-import": "2.32.0",
+    "eslint-plugin-jsx-a11y": "6.10.2",
+    "eslint-plugin-react": "7.37.5",
+    "eslint-plugin-react-hooks": "5.2.0",
+    "eslint-plugin-sonarjs": "3.0.3",
+    "http-proxy-middleware": "3.0.5",
+    "husky": "9.1.7",
+    "jsdom": "26.1.0",
+    "lint-staged": "16.1.2",
+    "nodemon": "3.1.10",
+    "npm-run-all": "4.1.5",
+    "prettier": "3.6.0",
+    "read": "4.1.0",
+    "rimraf": "6.0.1",
+    "sonarqube-scanner": "4.3.0",
+    "typescript": "5.8.3",
+    "typescript-eslint": "8.34.1",
+    "vite": "7.1.5",
+    "vite-plugin-svgr": "4.3.0",
+    "vite-tsconfig-paths": "5.1.4",
+    "vitest": "3.2.4"
+  },
+  "scripts": {
+    "prestart": "npm run clean",
+    "start": "npm-run-all -lp build:api:watch \"start:api-static -- -C\" start:web",
+    "start:api": "npm-run-all -lp build:api:watch start:api-static",
+    "start:api-static": "nodemon",
+    "start:web": "vite",
+    "prebuild": "npm-run-all -l clean -p lint",
+    "build": "cross-env npm-run-all -lp build:api build:web",
+    "build:api": "tsc --build tsconfig.api.json",
+    "build:api:watch": "npm run build:api -- --watch --preserveWatchOutput",
+    "build:web": "vite build",
+    "sonarqube": "sonar-scanner",
+    "clean": "rimraf build build-node coverage pom *.tgz .scannerwork test-results",
+    "serve": "vite preview",
+    "test": "vitest watch",
+    "test:once": "vitest run",
+    "test:coverage": "vitest run --coverage --reporter=junit --outputFile=coverage/surefire-reports/TEST-vitest.xml",
+    "lint": "npm-run-all lint:eslint lint:prettier",
+    "lint:eslint": "eslint 'src/**/*'",
+    "lint:prettier": "prettier --check '{api,src}/**/*{js,jsx,ts,tsx,md,html,css}'",
+    "lint:fix": "npm-run-all lint:eslint-fix lint:prettier-fix",
+    "lint:eslint-fix": "eslint --fix 'src/**/*{.ts,.tsx}'",
+    "lint:prettier-fix": "prettier --write '{api,src}/**/*{js,jsx,ts,tsx,md,html,css}'",
+    "prepare": "husky"
+  },
+  "nodemonConfig": {
+    "ext": "*.js",
+    "exec": "node build-node/setupDevelopment.js",
+    "watch": "build-node/**/*",
+    "delay": "200"
+  },
+  "prettier": {
+    "singleQuote": true
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 10",
+    "not op_mini all"
+  ],
+  "engines": {
+    "node": ">=22.0.0",
+    "npm": ">=10.0.0"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,md,html,css}": "prettier --write"
+  },
+  "peerDependencies": {
+    "i18next": "24.2.3",
+    "react-i18next": "15.5.3"
+  },
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "4.44.0"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "outDir": "build-node",
+    "sourceMap": true,
+    "noEmit": false
+  },
+  "include": ["src/api", "src/setupDevelopment.ts", "src/@types", "src/e2e"]
+}

@@ -1,0 +1,16 @@
+.main-wrapper {
+  max-width: 1700px;
+  margin: var(--spacing-s);
+}
+
+.main-card {
+  min-width: 95%;
+}
+
+.innsendingsknapp {
+  margin-bottom: var(--spacing-m);
+}
+
+.error-boundary {
+  margin: var(--spacing-xl);
+}
