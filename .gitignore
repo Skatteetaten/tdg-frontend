@@ -13,6 +13,7 @@
 # production
 /build
 /build-node
+.vite/
 
 # misc
 .DS_Store
