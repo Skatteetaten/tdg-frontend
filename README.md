@@ -25,7 +25,7 @@ Testdatageneratoren består av tre komponenter:
 ### Funksjonalitet og flyt mellom komponenter
 
 - **tdg-frontend** er brukergrensesnittet som lar brukeren definere en spesifikasjon for testdata som skal genereres.
-  Spesifikasjonen skrives som et internt utviklet DSL (kalt "Testdata Spesifikasjonsspråk"/TDSS) basert på Kotlin.
+  Spesifikasjonen skrives som et internt utviklet DSL (kalt "TestData Spesifikasjonsspråk"/TDSS) basert på Kotlin.
   TDSS'en er definert i _tdg-backend_. Frontenden gjør kall til tdg-kotlin-compiler-server for løpende validering av
   spesifikasjonen, og fra frontenden sendes deretter spesifikasjonen til tdg-backend.
 - **tdg-backend** består av to moduler.
@@ -42,11 +42,21 @@ som kan komme fra frontend eller HTTP-klienter. _korrelasjonsId_ brukes for å h
 
 ![Testdata flyt](docs/flytdiagram.png)
 
+### Bygging og kjøring av komponentene
+
+Komponentene må bygges og kjøres **i denne rekkefølgen**:
+
+- tdg-backend
+- tdg-kotlin-compiler-server (bygging av denne er avhengig av SNAPSHOT-versjon for tdss fra tdg-backend)
+- tdg-frontend
+
+Hver komponents README innholder nærmere beskrivelse av bygging og kjøring av den aktuelle komponenten.
+
 ## tdg-frontend
 
 tdg-frontend er brukergrensesnittet for Testdatageneratoren. I GUI'et kan brukeren velge mellom å spesifisere testdata
 for en person eller for en enhet. Spesifikasjonen fylles ut i et editor-vindu som er bygget opp med Kotlin
-Playground. [Kotlin PLayground](https://github.com/JetBrains/kotlin-playground) er en selvstendig komponent fra
+Playground. [Kotlin Playground](https://github.com/JetBrains/kotlin-playground) er en selvstendig komponent fra
 Jetbrains, som har integrasjon mot Kotlin Compiler Server. Fra Kotlin Playground gjøres kall mot
 tdg-kotlin-compiler-server, som gjør valideringer mot tdss-modulen for hva som er gyldig input. Spesifikasjonen som
 sendes inn til testdatagenerator-modulen kommer i retur som ferdig utfylte xml-dokumenter. KorrelasjonsId for
@@ -132,6 +142,10 @@ i [Skatteetatens Designsystem](https://github.com/Skatteetaten/designsystemet).
 
 Innholdet i filen **.env.example** kan med fordel kopieres over i en egen .env fil i rotmappen før applikasjonen
 startes, selv om applikasjonen skal kunne fungerere for lokal kjøring også uten denne filen.
+
+### Krav
+
+Applikasjonen krever Node versjon 22 eller høyere.
 
 ### Starte prosjektet første gang
 
